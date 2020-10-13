@@ -4,7 +4,7 @@ A projekt célja egy olyan asztal foglalási felület megvalósítása, ahol a f
 - Felhasználók kilistázhatják az elérhető asztalokat.
 - Adminisztárornak új asztal felvétele opció.
 - Felhasználók megtekinthetik az elérhető időpontokat.
-- Felhasználók különféle asztalok közül választhatnak (dohányzó, vip, normál).
+- Felhasználók különféle asztalok közül választhatnak.
 - Felhasználók számára egy regisztráció, és bejelentkezés felület.
 
 ## Nem funkcionális követelmények
@@ -17,5 +17,5 @@ A projekt célja egy olyan asztal foglalási felület megvalósítása, ahol a f
 - Adminisztrátor: Új asztalok felvétele, és foglalások törlése.
 
 ## Szakterületi fogalom jegyzék
-- Asztalok: Három asztal elérhető foglalásnál, és felvételnél: dohányzó, vip, normál.
+- Asztalok: Három kategóriába soroljuk az asztalokat: dohányzó, vip, kültéri.
 - Asztalok elérhetősége: A szabad asztalokat zöld szín jelzi, míg a foglaltakat piros.
