@@ -1,21 +1,17 @@
 jobs:
   include:
-
   - language: java
     jdk: openjdk8
     cache:
       directories:
-        - $HOME/.m2
-
+      - "$HOME/.m2"
     before_install: cd backend
     install: true
-
-    script: mvn -B test  # mvn clean install is működne
-
+    script: mvn -B test
     deploy:
       skip_cleanup: true
       provider: heroku
-      api_key:
-        secure: ZWYRJ+tYLjp3rftdBP3wJkCg2aC+CdDL5fd9C4PSGkDnLleQtvEQtrpzoaLkNOVU7F06fSt2pX4tIX+tuDrc0Pf3rJiPn+K87HczsmokUlinrl3JCFa12qZYPwQaV8eJZ0TuEIRfyL4iMoGkMTDSr9TDhfpQp3Um3/heoaDW6DYl5Tftsjb1c3pig50h6XckGle2aif0ECrKvbT/kXp+10c8bSrvKc2IoPKXUIBsLgQWcbS0ffiFHcCGR8oT3M2E9tHerpBLRDbdcQ8+h+cMZ+IBwaEk+sqbBdPmlaOAbOBebiqj0M/n+/TPYP/56zsiCtl6DevJSYZyEhJH0iu9u1wh1dpD3h7hn8gKXA37nwGu8xesvORpBNaM8RJroZAfSvT4//iyhQQCPjzHoh1e3lOUO+lJeAqzzQCunefTpRt4ONINjLzCuaQil+qrgel+KGKPyEaSJVBz0TwoIbQxfa4GcjsZE7Zff6TeQrW0oWp4qDbE6AGy96EMLjqDNfae1sSeAe2LSfLhDsZqBnEQH57eN3qtzQPEIxDcorXGSAtH1N+RG2R56Sg6sfIIsPZrv8jBIh4wwpdonI2PYNHYv8P1tFpixYLtI3ESefcm2Uy+bR+93jOivm9+HgkHgOdSmFPFNk4CTDWsTvjv4s80Rp+//QwhD+Ca64m+kdWYXHc=
         app: reservationtracker
       on: main
+      api_key:
+        secure: mq+d/Pj14qaxzdgQrOQJqKJcO9S94wXG1SB6qBnAY7Z+m47IUcsqr6H5/Xht4LCx1jBD9ySu6NBOpLqBZsedE5djW1jA3K/XXwiX7HooQ2bBdHGKnZKtibMIiojMm+hYzc+wEXhu/WNXJTnSIlGtyLkY5ZtSKkd2WLjWx0ZrSOu/D93ah3cHhcuUI1XyF+sgsjrGcrRSf5/Flt5c26V4NztEsqok27IeZ4ctaHefq0zD7cEh1G02U7yJ1dDvwD3/HU6A8GCaAtTbczETJ7genLYE/NggW/v7c1wglJQ6JaBukki5eqHPOyttZDVfrrkhkOrbrSAFRy9/okrVNV5iA6FxqVlW+rViutLKIykLpt6prphUWePq5UmELz9Dzk9OAReZUUOxoznOahOD9lVWqFJ6GUkean6vfoduxVjP1q8ZORyDS4BuWXx9OfeNjB0zVvP107YIiNk+w6Ol7iX1HwaAxYKeVm9PWpY9jVy5CDRFwUolQKNRhzLPoHXeKUKVYIHPMi4qKN0KPHhswQ02hAt9LXLC1T/lV8bkNnjnH/904VYQYBlEFSWFXm6KlSyhjhMeOew/5uD3y05J7zVe93vn93PfoQnOa8BHWYxSXVXDGlSP7QLGpHFIJoV6yJZr2BdicaU6axc/6Dk6EHWDk8avNKCcmRv6r3BElNsGEJ4=
