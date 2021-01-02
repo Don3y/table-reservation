@@ -8,10 +8,11 @@ jobs:
     before_install: cd backend
     install: true
     script: mvn -B test
-    deploy:
-      skip_cleanup: true
-      provider: heroku
-        app: reservationtracker
-      on: main
-      api_key:
-        secure: mq+d/Pj14qaxzdgQrOQJqKJcO9S94wXG1SB6qBnAY7Z+m47IUcsqr6H5/Xht4LCx1jBD9ySu6NBOpLqBZsedE5djW1jA3K/XXwiX7HooQ2bBdHGKnZKtibMIiojMm+hYzc+wEXhu/WNXJTnSIlGtyLkY5ZtSKkd2WLjWx0ZrSOu/D93ah3cHhcuUI1XyF+sgsjrGcrRSf5/Flt5c26V4NztEsqok27IeZ4ctaHefq0zD7cEh1G02U7yJ1dDvwD3/HU6A8GCaAtTbczETJ7genLYE/NggW/v7c1wglJQ6JaBukki5eqHPOyttZDVfrrkhkOrbrSAFRy9/okrVNV5iA6FxqVlW+rViutLKIykLpt6prphUWePq5UmELz9Dzk9OAReZUUOxoznOahOD9lVWqFJ6GUkean6vfoduxVjP1q8ZORyDS4BuWXx9OfeNjB0zVvP107YIiNk+w6Ol7iX1HwaAxYKeVm9PWpY9jVy5CDRFwUolQKNRhzLPoHXeKUKVYIHPMi4qKN0KPHhswQ02hAt9LXLC1T/lV8bkNnjnH/904VYQYBlEFSWFXm6KlSyhjhMeOew/5uD3y05J7zVe93vn93PfoQnOa8BHWYxSXVXDGlSP7QLGpHFIJoV6yJZr2BdicaU6axc/6Dk6EHWDk8avNKCcmRv6r3BElNsGEJ4=
+deploy:
+  provider: heroku
+  api_key:
+    secure: si0+A048Rml01+HfVhLIfTHjm+oxYQ5VCkKGlR78+Vfrgo904aPKvlOKQcgVqoQCtWsXQpabAGSaxjouOsDfez6ATjrOAmX51siRL2Oh5WL5U8PX7R7HMFRVXEbvsSnbQXvKhPlD3/MQZ0nzWODQAJUb+xRIXgeAX1eQxWDPlEagjv+p+ZdAswbFFK9vUmTm+lSt21dAvHHBdhHkFEuruFFHPZsYWjMnhQkLjhLhmmUJfCBfyuV5/fxbAyVYAlpNGj0PVGPUCsDPC7Xs9wq3F5XbpxS0OrCIUdNo+x+4fxVDt7d3m33YyeK/ebVb6IzsQf9JzoI5ZwzdrbvFuqqSqs8gCxYqnUL9OD0xVNS+9wE1fNxsQzuBN+AwbSfvKnm+/WrLA0PBVTltwI6jb7R9EAKS8gh5IEO8z20DFHtEHiDKSxE1lrkF3O0ssITzGtYdqGBtJ2Rm2xH1uNvxtxjIxwPjZ0BpTYz6K3gpKM+av2DsCQ73uRsamdxYFylF2cXZLvGpEKuC0wZ1WZmdQUTF/RvwsMn53KkIG6/YKgr+0jcsh0pSaqPRd8UPJMBud0/Bu/AvoK/4+d2PGgE6d/rZIWfkOxEpBbco5j3kB+Mak6YkszFQVR0y9oBm3OJt+167sfppsYsWLJMdhD1Pax3mbQwTS8OaUjP3MtRBsNbX00M=
+  app: reservationtracker
+  on: main
+    repo: Don3y/table-reservation
+  skip_cleanup: 'true'
