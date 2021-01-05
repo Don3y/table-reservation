@@ -1,0 +1,18 @@
+<mat-list>
+	<mat-list-item routerLink="/reservation/new-reservation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" matRipple>
+		<mat-icon mat-list-icon>add_box</mat-icon>
+		<h4 mat-line>Új foglalás</h4>
+	</mat-list-item>
+	<mat-list-item routerLink="/reservation/my-reservation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" matRipple>
+		<mat-icon mat-list-icon>history</mat-icon>
+		<h4 mat-line>Foglalásaim</h4>
+	</mat-list-item>
+	<mat-list-item routerLink="/settings" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" matRipple>
+		<mat-icon mat-list-icon>settings</mat-icon>
+		<h4 mat-line>Beállítások</h4>
+	</mat-list-item>
+	<mat-list-item >
+		<mat-icon mat-list-icon>logout</mat-icon>
+		<h4 mat-line>Kijelentkezés</h4>
+	</mat-list-item>
+</mat-list>

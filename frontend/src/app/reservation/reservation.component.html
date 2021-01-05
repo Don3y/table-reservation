@@ -1,0 +1,16 @@
+<div class="reservation" *ngFor="let reservation of is.getReservations()">
+    <mat-accordion multi>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    #{{reservation.iid}}
+                </mat-panel-title>
+                <mat-panel-description>
+                    {{ (reservation.details.length > 50 ? (reservation.details | slice:0:50) + '...': reservation.details)}}
+                    <mat-icon>assignment</mat-icon>
+                </mat-panel-description>
+        </mat-expansion-panel-header>
+        {{reservation.details}}
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
