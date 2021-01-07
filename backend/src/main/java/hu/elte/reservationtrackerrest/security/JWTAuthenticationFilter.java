@@ -22,6 +22,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsUtils;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
@@ -46,16 +47,21 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         try {
             User creds = new ObjectMapper()
                     .readValue(req.getInputStream(), User.class);
+              if (CorsUtils.isPreFlightRequest(req)) {
+                    res.setStatus(HttpServletResponse.SC_OK);
 
+              }
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             creds.getUsername(),
                             creds.getPassword(),
                             new ArrayList<>())
-            );
+            );   
+           
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+       
     }
 
     @Override
