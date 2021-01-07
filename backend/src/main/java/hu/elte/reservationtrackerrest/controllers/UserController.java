@@ -33,11 +33,11 @@ public class UserController {
         userRepository.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-     @GetMapping("/auth")
-    private ResponseEntity<User> getValiadtion(@RequestParam String username, @RequestParam String password) {
+    @GetMapping("/auth")
+    private ResponseEntity<Integer> getValiadtion(@RequestParam String username, @RequestParam String password) {
         User foundCompany = userRepository.findValidUser(username, password);
         if (foundCompany != null) {
-            return ResponseEntity.ok(foundCompany);
+            return ResponseEntity.ok(foundCompany.getId());
         } else {
             return ResponseEntity.ok().build();
         }
