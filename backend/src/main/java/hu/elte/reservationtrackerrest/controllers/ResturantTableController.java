@@ -22,8 +22,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 @RestController
+@CrossOrigin
 @RequestMapping("/tables")
 public class ResturantTableController {
     
@@ -40,6 +41,7 @@ public class ResturantTableController {
     }
     
 //    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
+    @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity<ResturantTable> get(@PathVariable Integer id) {
         Optional<ResturantTable> oResturantTable = resturantTableRepository.findById(id);
@@ -49,12 +51,12 @@ public class ResturantTableController {
             return ResponseEntity.notFound().build();
         }
     }
-    
+    @CrossOrigin
     @PostMapping("")
     public ResponseEntity<ResturantTable> insert(@RequestBody ResturantTable resturanttable) {
         return ResponseEntity.ok(resturantTableRepository.save(resturanttable));
     }
-    
+    @CrossOrigin
     @PutMapping("/{id}")
     public ResponseEntity<ResturantTable> update(@PathVariable Integer id, @RequestBody ResturantTable resturanttable) {
         Optional<ResturantTable> oResturantTable = resturantTableRepository.findById(id);
@@ -65,7 +67,7 @@ public class ResturantTableController {
             return ResponseEntity.notFound().build();
         }
     }
-    
+    @CrossOrigin
     @DeleteMapping("/{id}")
     @Secured({ "ROLE_ADMIN" })
     public ResponseEntity<ResturantTable> delete(@PathVariable Integer id) {
@@ -81,7 +83,7 @@ public class ResturantTableController {
    
     
   
-    
+    @CrossOrigin
     @GetMapping("/{id}/labels")
     public ResponseEntity<Iterable<Label>> labels(@PathVariable Integer id) {
         Optional<ResturantTable> oResturantTable = resturantTableRepository.findById(id);
@@ -91,7 +93,7 @@ public class ResturantTableController {
             return ResponseEntity.notFound().build();
         }
     }
-    
+    @CrossOrigin
     @PostMapping("/{id}/labels")
     public ResponseEntity<Label> addLabel(@PathVariable Integer id, @RequestBody Label label) {
         Optional<ResturantTable> oResturantTable= resturantTableRepository.findById(id);
@@ -106,7 +108,7 @@ public class ResturantTableController {
             return ResponseEntity.notFound().build();
         }
     }
-    
+    @CrossOrigin
     @PutMapping("/{id}/labels")
     public ResponseEntity<Iterable<Label>> modifyLabels(
             @PathVariable Integer id, @RequestBody List<Label> labels) {
