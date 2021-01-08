@@ -3,7 +3,6 @@ package hu.elte.reservationtrackerrest.security;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +18,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebSecurity
@@ -41,23 +39,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        writer.println(new ObjectMapper().writeValueAsString("Unauthorized"));
 //        rsp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 //    }
-  
+    
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         String secret = environment.getProperty(SECRET_PROPERTY_NAME);
         http    
-               
+            // .authorizeRequests().anyRequest().permitAll();
                 .cors().and()
                 .csrf().disable()
                 .headers()
                     .frameOptions().disable()
                     .and()
-                .authorizeRequests() 
-                   
-                    .antMatchers(HttpMethod.POST, "/api/auth").permitAll()
-  //                  .antMatchers(HttpMethod.POST, "/users").permitAll()
+                .authorizeRequests()
+  //                  .antMatchers(HttpMethod.POST, "/api/auth").permitAll()
+                    .antMatchers(HttpMethod.POST, "/users/**").permitAll()
                     .antMatchers("/h2/**").permitAll()
-                    .anyRequest().permitAll()
+                    .anyRequest().authenticated()
                     .and()
 // //                .exceptionHandling().authenticationEntryPoint(WebSecurityConfig::handleException)
 // //                    .and()
@@ -76,29 +73,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .password("{noop}user")
 //                .authorities("ROLE_USER");
 //    }
-@Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200","http://localhost:8080"));
-        configuration.setAllowedMethods(Arrays.asList("GET","POST", "PUT", "DELETE","OPTIONAL"));
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+
+  
     
     @Autowired
     private UserDetailsService userDetailsService;
 
-    @Autowired
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-            .userDetailsService(userDetailsService)
-            .passwordEncoder(passwordEncoder());
-    }
+//    @Autowired
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth
+//            .userDetailsService(userDetailsService)
+//            .passwordEncoder(passwordEncoder());
+//    }
     
     // @Bean
     // CorsConfigurationSource corsConfigurationSource() {
