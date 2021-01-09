@@ -47,19 +47,20 @@ public class ReservationController {
     public ResponseEntity<Iterable<Reservation>> getAll() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         List<String> roles = auth.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
-        if (roles.contains("ROLE_ADMIN")) {
+     
             return ResponseEntity.ok(reservationRepository.findAll());
-        }
+        
     
-        return ResponseEntity.notFound().build();
+    
     }
+
     
-//    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
+//    
     @GetMapping("/{id}")
-    public ResponseEntity<Reservation> get(@PathVariable Integer id) {
-        Optional<Reservation> oOrder = reservationRepository.findById(id);
-        if (oOrder.isPresent()) {
-            return ResponseEntity.ok(oOrder.get());
+    public ResponseEntity<List<Reservation>> get(@PathVariable Integer id) {
+        List<Reservation> oOrder = reservationRepository.findByUser_id(id);
+        if (oOrder.size()>0) {
+            return ResponseEntity.ok(oOrder);
         } else {
             return ResponseEntity.notFound().build();
         }
