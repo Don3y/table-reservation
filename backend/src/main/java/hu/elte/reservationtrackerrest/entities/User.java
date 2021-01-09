@@ -31,7 +31,7 @@ public class User {
     
     @Column(nullable = false)
     private String username;
-
+    
     @Column(nullable = false)
     private String password;
     
@@ -43,9 +43,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
     
-    @OneToOne(mappedBy = "user")
+   @OneToMany(mappedBy = "user")
     @JsonIgnore
-    private Reservation reservation;
+    private List<Reservation> reservation;
     
     public enum Role {
         ROLE_GUEST, ROLE_USER, ROLE_ADMIN

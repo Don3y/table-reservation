@@ -47,9 +47,9 @@ public class ResturantTable {
     @ManyToMany
     @JoinTable
     private List<Label> labels;
-    @OneToOne(mappedBy = "resturanttable")   
+     @OneToMany(mappedBy = "resturanttable")  
     @JsonIgnore
-    private Reservation reservation;
+    private List<Reservation> reservation;
     
 
  
