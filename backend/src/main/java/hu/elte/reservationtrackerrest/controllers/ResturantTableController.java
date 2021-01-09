@@ -51,6 +51,16 @@ public class ResturantTableController {
             return ResponseEntity.notFound().build();
         }
     }
+    
+    @CrossOrigin
+    @GetMapping("/free")
+    public ResponseEntity<List<ResturantTable>> getFree() {
+        List<ResturantTable> oResturantTables = resturantTableRepository.findByStatus(ResturantTable.Status.FREE);
+        if(oResturantTables.size()>0){
+        return ResponseEntity.ok(oResturantTables);           
+        }
+        return ResponseEntity.notFound().build();
+        }
     @CrossOrigin
     @PostMapping("")
     public ResponseEntity<ResturantTable> insert(@RequestBody ResturantTable resturanttable) {

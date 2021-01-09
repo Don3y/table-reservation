@@ -66,12 +66,13 @@ public class ReservationController {
     }
     
     @PostMapping("")
-    @Secured({ "ROLE_ADMIN" })
-    public ResponseEntity<Reservation> insert(@RequestBody HashMap<String,String> resp_map ) {
-        
-        String str1=resp_map.get("resturanttable_id");
+
+    public ResponseEntity<String> insert(@RequestBody HashMap<String,String> resp_map ) {
+        try{
+        String str1=resp_map.get("resturanttable_name");
         String str2=resp_map.get("user_id");
-        Integer resturant_id = Integer.parseInt(str1);
+        ResturantTable table = tableRepository.findByTablename(str1);
+        Integer resturant_id = table.getId();
         Integer user_id = Integer.parseInt(str2);
         Optional<ResturantTable> oResturantTable = tableRepository.findById(resturant_id);
         if (!oResturantTable.isPresent()) { return ResponseEntity.notFound().build();}
@@ -82,12 +83,18 @@ public class ReservationController {
         if (!oUser.isPresent()) { return ResponseEntity.notFound().build();}
         Reservation reservation = new Reservation();
         reservation.setResturanttable(oResturantTable.get());
-        reservation.setUser(oUser.get());       
-        return ResponseEntity.ok(reservationRepository.save(reservation));
+        reservation.setUser(oUser.get());  
+        reservationRepository.save(reservation);
+         return ResponseEntity.ok("OK");
+        }catch(Exception e){
+                     return ResponseEntity.ok("ERROR");
+
+        }
+       
     }
     
-       @DeleteMapping("/{id}")
-    @Secured({ "ROLE_ADMIN" })
+    @DeleteMapping("/{id}")
+  
     public ResponseEntity<Reservation> delete(@PathVariable Integer id) {
         Optional<Reservation> oReservation = reservationRepository.findById(id);
         if (oReservation.isPresent()) {

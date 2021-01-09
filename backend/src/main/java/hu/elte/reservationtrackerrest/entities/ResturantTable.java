@@ -41,7 +41,9 @@ public class ResturantTable {
     @Enumerated(EnumType.STRING)
     private Status status;
     
-
+    @Column(nullable = false)
+    private String tablename;
+    
     @ManyToMany
     @JoinTable
     private List<Label> labels;
