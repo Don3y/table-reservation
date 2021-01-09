@@ -44,8 +44,6 @@ public class UserController {
         Optional<User> oUser = userRepository.findByUsername(user.getUsername());
         
        if (oUser.isPresent()) {
-           System.out.println(oUser.get().getPassword());
-           System.out.println(md5Hash(user.getPassword()));
            if(oUser.get().getPassword().equals(md5Hash(user.getPassword()))){
             return ResponseEntity.ok(oUser.get().getId());
            } 

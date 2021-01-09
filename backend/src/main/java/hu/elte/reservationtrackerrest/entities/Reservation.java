@@ -35,6 +35,7 @@ public class Reservation {
     private LocalDateTime created_at;
    @OneToOne
     private ResturantTable resturanttable;
+   @JsonIgnore
    @OneToOne
     private User user;
   
