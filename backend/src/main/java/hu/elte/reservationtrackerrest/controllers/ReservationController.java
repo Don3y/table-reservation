@@ -1,5 +1,6 @@
 package hu.elte.reservationtrackerrest.controllers;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import hu.elte.reservationtrackerrest.entities.Reservation;
 import hu.elte.reservationtrackerrest.entities.ResturantTable;
 import hu.elte.reservationtrackerrest.entities.ResturantTable.Status;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import hu.elte.reservationtrackerrest.repositories.ReservationRepository;
 import java.util.HashMap;
+import java.util.Map;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -68,9 +70,11 @@ public class ReservationController {
     
     @PostMapping("")
 
-    public ResponseEntity<String> insert(@RequestBody HashMap<String,String> resp_map ) {
+    public ResponseEntity<Map<String,String>> insert(@RequestBody HashMap<String,String> resp_map ) {
+         HashMap<String,String> map = new HashMap<>();
         try{
-        String str1=resp_map.get("resturanttable_name");
+        String str1=resp_map.get("resturanttable_name"
+                + "");
         String str2=resp_map.get("user_id");
         ResturantTable table = tableRepository.findByTablename(str1);
         Integer resturant_id = table.getId();
@@ -86,9 +90,12 @@ public class ReservationController {
         reservation.setResturanttable(oResturantTable.get());
         reservation.setUser(oUser.get());  
         reservationRepository.save(reservation);
-         return ResponseEntity.ok("OK");
+       
+         map.put("message", "OK");
+         return ResponseEntity.ok(map);
         }catch(Exception e){
-                     return ResponseEntity.ok("ERROR");
+        map.put("message", "ERROR");
+        return ResponseEntity.ok(map);
 
         }
        
