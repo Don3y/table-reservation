@@ -13,7 +13,9 @@ import { baseUrl } from 'src/environments/environment';
     httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          'Authorization': ''
+          'Authorization': '',
+          'Access-Control-Allow-Origin': 'http://reservationtracker.herokuapp.com',
+          'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE'
         })
       };
     constructor(private http: HttpClient){}
