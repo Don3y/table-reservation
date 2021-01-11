@@ -20,7 +20,7 @@ export class AuthService {
       'Content-Type': 'application/json',
       'Authorization': '',
       'Accept': 'application/json',
-      'Access-Control-Allow-Origin': 'http://reservationtracker.herokuapp.com',
+      'Access-Control-Allow-Origin': 'http://reservationtracker.herokuapp.com/*',
       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE'
     })
   };
