@@ -6,10 +6,10 @@ insert into label (id,text, created_at, updated_at) values (2,'VIP', CURRENT_TIM
 insert into label (id,text, created_at, updated_at) values (3,'Outdoor', CURRENT_TIMESTAMP(),  CURRENT_TIMESTAMP());
 
 insert into resturant_table(id,status,tablename) values (1,'FREE','Table for 2');
-insert into resturant_table(id,status,tablename) values (2,'FREE','Table for 2');
-insert into resturant_table(id,status,tablename) values (3,'FREE','Table for 4');
-insert into resturant_table(id,status,tablename) values (4,'FREE','Table for 4');
-insert into resturant_table(id,status,tablename) values (5,'FREE','Table for 8');
+insert into resturant_table(id,status,tablename) values (2,'FREE','Table for 4');
+insert into resturant_table(id,status,tablename) values (3,'FREE','Table for 6');
+insert into resturant_table(id,status,tablename) values (4,'FREE','Table for 8');
+insert into resturant_table(id,status,tablename) values (5,'FREE','Table for 10');
 
 insert into resturant_table_labels (tables_id,labels_id) values (1,1);
 insert into resturant_table_labels (tables_id,labels_id) values (1,3);

@@ -73,8 +73,7 @@ public class ReservationController {
     public ResponseEntity<Map<String,String>> insert(@RequestBody HashMap<String,String> resp_map ) {
          HashMap<String,String> map = new HashMap<>();
         try{
-        String str1=resp_map.get("resturanttable_name"
-                + "");
+        String str1=resp_map.get("resturanttable_name");
         String str2=resp_map.get("user_id");
         ResturantTable table = tableRepository.findByTablename(str1);
         Integer resturant_id = table.getId();
