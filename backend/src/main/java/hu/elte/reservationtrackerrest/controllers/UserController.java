@@ -5,6 +5,8 @@ import hu.elte.reservationtrackerrest.repositories.UserRepository;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,12 +42,15 @@ public class UserController {
     }
     @CrossOrigin
      @PostMapping("/singin")
-       public ResponseEntity<Integer> login(@RequestBody User user) {
+       public ResponseEntity<Map> login(@RequestBody User user) {
+        HashMap<String,String> map = new HashMap<>();
+
         Optional<User> oUser = userRepository.findByUsername(user.getUsername());
         
        if (oUser.isPresent()) {
            if(oUser.get().getPassword().equals(md5Hash(user.getPassword()))){
-            return ResponseEntity.ok(oUser.get().getId());
+               map.put("id",oUser.get().getId().toString());
+            return ResponseEntity.ok(map);
            } 
        }
             return ResponseEntity.notFound().build();
