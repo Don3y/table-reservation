@@ -1,21 +1,25 @@
-import { isIdentifier } from '@angular/compiler';
-import { Injectable} from '@angular/core';
-
-import {MyReservation} from "@core/interfaces/my-reservation.interface";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { ReservedTable } from 'src/app/core/interfaces/reserved.interface';
+import { baseUrl } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root'
-})
+  })
 
-export class MyReservationService {
+  export class MyReservationService {
+    httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': ''
+        })
+      };
 
-    reservation: MyReservation [] = [
-        { iid: 1, uid: -1, type: 'Smoking', details: 'Ide jön az első foglalás részletes leírása', timestamp: 160124188},
-        { iid: 2, uid: -1, type: 'Outsider', details: 'Ide jön a második foglalás részletes leírása', timestamp: 160124188}
-    ];
-    constructor() {}
-
-    public getReservations(): MyReservation[]{
-        return this.reservation;  
+    constructor(private http: HttpClient){}
+    getReservations(){
+        return this.http.get<ReservedTable[]>(`${baseUrl}/reservation/${localStorage.getItem('id')}`);
+    }
+    deleteReservation(delReservation: string){
+      return this.http.delete<ReservedTable[]>(`${baseUrl}/reservation/${delReservation}`);
     }
 }

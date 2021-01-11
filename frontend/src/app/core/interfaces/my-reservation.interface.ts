@@ -1,7 +1,6 @@
 export interface MyReservation {
     iid: number;
-    uid: number;
-    type: 'Vip' | 'Smoking' | 'Outsider';
-    details: string;
+    table: string;
+    type: string;
     timestamp: number;
 }

@@ -1,4 +1,4 @@
-
+<div *ngIf="router.url !== '/' && router.url !== '/404'; else nodrawer">
 	<mat-toolbar color="primary">
 		<mat-toolbar-row>
 			<button class="menu primary" mat-icon-button (click)="drawer.toggle()" matTooltip="Főmenü">
@@ -17,8 +17,9 @@
 			</main>
 		</mat-drawer-content>
 	</mat-drawer-container>
+</div>
 <ng-template #nodrawer>
 	<div class="wrapper dynamic-background">
-    <router-outlet></router-outlet>
-    </div>
+		<router-outlet></router-outlet>
+	</div>
 </ng-template>

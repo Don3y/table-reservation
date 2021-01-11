@@ -21,7 +21,7 @@ export class SigninComponent {
     private ns : NotificationService
   ) {
     this.signinForm = this.formBuilder.group({
-      username: [null, [Validators.email, Validators.required]],
+      username: [null, [Validators.required]],
       password: [null, Validators.required]
     });
   }
@@ -31,7 +31,7 @@ export class SigninComponent {
       this.as.login(<User>form.value);
     }
     else {
-      this.ns.show('HIBA! Adatok nem megfelelőek!');
+      this.ns.show('Error! Data is not correct!');
     }
   }
 

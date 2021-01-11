@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatPasswordStrengthComponent } from '@angular-material-extensions/password-strength';
 
 import { AuthService } from '@core/services/auth.service';
 import { NotificationService } from '@core/services/notification.service';
-
-import { MatchValidation } from '@core/validators/match.validator';
 
 import { User } from '@core/interfaces/user.interface';
 
@@ -30,25 +27,18 @@ export class SignupComponent {
 		private ns: NotificationService
   ) {
     this.signupForm = this.formBuilder.group({
-			name: [null, [Validators.minLength(5), Validators.required]],
-			username: [null, [Validators.email, Validators.required]],
+			username: [null, [Validators.minLength(5), Validators.required]],
 			password: [null, [Validators.pattern(RegExpValidator.lowerCase), Validators.pattern(RegExpValidator.upperCase), Validators.pattern(RegExpValidator.digit), Validators.pattern(RegExpValidator.specialChar), Validators.minLength(8), Validators.maxLength(30), Validators.required]],
-			passwordConfirm: [null, Validators.required]
-		},
-		{
-			validator: MatchValidation.MatchPassword
 		});
   }
 
   signup(form: FormGroup): void {
 		if (form.valid) {
-      delete form.value.name;
-      delete form.value.passwordConfirm;
       this.auth.register(<User>form.value);
       this.signupForm.reset();
 		}
 		else {
-			this.ns.show('HIBA! Adatok nem megfelelőek!');
+			this.ns.show('Error! Data is not correct!');
 		}
 	}
 

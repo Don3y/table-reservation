@@ -7,7 +7,7 @@ import { NotificationService } from '@core/services/notification.service';
 
 import { User } from '@core/interfaces/user.interface';
 
-//import { baseUrl } from 'src/environments/environment';
+import { baseUrl } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,8 @@ export class AuthService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': ''
+      'Authorization': '',
+      'Accept': 'application/json'
     })
   };
 
@@ -33,27 +34,28 @@ export class AuthService {
   }
 
   register(user: User): void {
-    this.http.post<User>(`user/register`, user, this.httpOptions).subscribe(
+    this.http.post<User>(`${baseUrl}/users/registry`, user, this.httpOptions).subscribe(
       data => {
-        this.ns.show('Sikeres regisztráció!');
+        this.ns.show('Successful registrartion!');
       },
       error => {
-        this.ns.show('HIBA! Regisztráció sikertelen!');
+        this.ns.show('Error! Registration failed!');
         console.error(error);
       }
     );
   }
 
   login(user: User): void {
-    this.http.post<User>(`user/login`, user, this.httpOptions).subscribe(
+    this.http.post<User>(`${baseUrl}/users/singin`, user, this.httpOptions).subscribe(
       data => {
+        localStorage.setItem('id', data['id']);
         localStorage.setItem('token', data['token']);
         this.isLogin$.next(true);
-        this.ns.show('Sikeres bejelentkezés!');
-        this.router.navigate(['/reservation/my-reservation']);
+        this.ns.show('Successful login!');
+        this.router.navigate(['/reservation/new-reservation']);
       },
       error => {
-        this.ns.show('HIBA! Bejelentkezés sikertelen!');
+        this.ns.show('Error! Login failed!');
         console.error(error);
       }
     );
@@ -61,8 +63,9 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('id');
     this.isLogin$.next(false);
-    this.ns.show('Sikeres kijelentkezés!');
+    this.ns.show('Successful logout!');
     this.router.navigate(['/']);
   }
 

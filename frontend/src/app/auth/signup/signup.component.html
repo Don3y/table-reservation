@@ -3,46 +3,27 @@
         <input
             matInput
             type="text"
-            placeholder="Az Ön neve"
-            formControlName="name"
+            placeholder="Your username"
+            formControlName="username"
             required
             appNameFormat
         >
-        <mat-error>Mező kitöltése kötelező, minimum karakterszám: 5!</mat-error>
-    </mat-form-field>
-    <mat-form-field hintLabel="Megfelelő formátum: nev@inf.elte.hu">
-        <input
-            matInput
-            type="email"
-            placeholder="E-mail címe"
-            formControlName="username"
-            required
-        >
-        <mat-error>Adjon meg egy érvényes E-mail címet!</mat-error>
+        <mat-error>Field is mandatory, minimum character: 5!</mat-error>
     </mat-form-field>
     <mat-form-field>
         <input
             matInput
             #password
             type="password"
-            placeholder="Választott jelszava"
+            placeholder="Your password"
             color="primary"
             formControlName="password"
             required
         >
-        <mat-error>Feltételeknek megfelelő jelszó megadása kötelező!</mat-error>
-    </mat-form-field>
-    <mat-form-field>
-        <input
-            matInput
-            type="password"
-            placeholder="Jelszó ismétlése"
-            formControlName="passwordConfirm"
-            required>
-        <mat-error>Megadott jelszavak nem azonosak!</mat-error>
+        <mat-error>Give a proper password for the given properties!</mat-error>
     </mat-form-field>
     <div *ngIf="password.value.length > 0">
-        <mat-label>Jelszó erőssége:</mat-label>
+        <mat-label>Password strength:</mat-label>
         <mat-password-strength
             #passwordStrength
             [password]="password.value"
@@ -50,11 +31,11 @@
         </mat-password-strength>
         <mat-password-strength-info
             [passwordComponent]="passwordStrength"
-            lowerCaseCriteriaMsg="legalább egy kisbetűt tartalmaznia kell"
-            upperCaseCriteriaMsg="legalább egy nagybetűt tartalmaznia kell"
-            digitsCriteriaMsg="legalább egy számot tartalmaznia kell"
-            specialCharsCriteriaMsg="legalább egy speciális karaktert ($,#,%,*...) tartalmaznia kell"
-            minCharsCriteriaMsg="legalább 8 karakter hosszú legyen"
+            lowerCaseCriteriaMsg="at least one lowercase character"
+            upperCaseCriteriaMsg="at least one uppercase character"
+            digitsCriteriaMsg="at least one number"
+            specialCharsCriteriaMsg="at least one special character ($,#,%,*...)"
+            minCharsCriteriaMsg="needs to be at least 8 character long"
         >
         </mat-password-strength-info>
 	</div>
@@ -63,6 +44,6 @@
         color="primary"
         style="margin:15px 0 0 0"
     >
-        Regisztráció
+        Registration
     </button>
 </form>

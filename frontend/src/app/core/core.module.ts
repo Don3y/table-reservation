@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MyReservationService } from '@core/services/my-reservation.service';
 
+import { AuthService } from './services/auth.service';
+import { IssueService } from '@core/services/issue.service';
+import { NotificationService } from '@core/services/notification.service';
 
 @NgModule({
 	declarations: [],
@@ -12,7 +14,9 @@ import { MyReservationService } from '@core/services/my-reservation.service';
 		MatSnackBarModule
 	],
 	providers: [
-		MyReservationService
+		AuthService,
+		IssueService,
+		NotificationService
 	]
 })
 export class CoreModule { }
