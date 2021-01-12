@@ -1,9 +1,7 @@
 # Asztal foglalás
-A projekt célja egy olyan asztal foglalási felület megvalósítása, ahol a felhasználók a számukra megfelelő intervallumban a társaság számára megfelelő asztalt kiválaszthassák. Az adminisztátornak pedig megvan a lehetősége, hogy bővíteni tudja az asztalok számát, és ha valamelyik felhasználó visszamondja a foglalást törölhesse azt. 
+A projekt célja egy olyan asztal foglalási felület megvalósítása, ahol a felhasználók a számukra megfelelő asztalt kiválaszthatják a társaság számára.
 ## Funkcionális követelmények
 - Felhasználók kilistázhatják az elérhető asztalokat.
-- Adminisztárornak új asztal felvétele opció.
-- Felhasználók megtekinthetik az elérhető időpontokat.
 - Felhasználók különféle asztalok közül választhatnak.
 - Felhasználók számára egy regisztráció, és bejelentkezés felület.
 
@@ -13,9 +11,9 @@ A projekt célja egy olyan asztal foglalási felület megvalósítása, ahol a f
 - Gyors keresési eredmény
 
 ## Szerepkörök
-- Felhasználó: Elérhető asztalok megtekintése, foglalhat ha elérhető az adott intervallumban.
-- Adminisztrátor: Új asztalok felvétele, és foglalások törlése.
+- Felhasználó: Elérhető asztalok megtekintése, foglalások megtekintése, és azok törlése.
+- Szolgáltató: Bejelentkezés, regisztrálás üzemeltetése.
 
 ## Szakterületi fogalom jegyzék
 - Asztalok: Három kategóriába soroljuk az asztalokat: dohányzó, vip, kültéri.
-- Asztalok elérhetősége: A szabad asztalokat zöld szín jelzi, míg a foglaltakat piros.
+- Asztalok elérhetősége: A szabad asztalokat egy listából választhatjuk ki.
